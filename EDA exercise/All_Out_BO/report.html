@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+      <title>Data Visualization</title>
+      <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+      <link rel='stylesheet' href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'>
+
+      <script src='http://code.jquery.com/jquery-1.10.2.js'></script>
+      <script>
+      $(document).ready(function(){
+      $('.onetoone').hide();
+      });
+
+      $(function() {
+      $('.origimg').click(function(e) {
+      $('#popup_img').attr('src',$(this).attr('src'));
+      $('#myContainer').hide();
+      var pos = $(document).scrollTop();
+      $('#myContainer').css({'top':pos+20,'left':250, 'position':'absolute', 'border':'1px solid black', 'padding':'0px'});
+      $('#myContainer').show();
+      });
+      $('#myContainer').click(function(e) {
+      $('#myContainer').hide();
+      });
+
+      $('#myform2').submit(function(e) {
+      e.preventDefault();
+      });
+
+      $('#onetoone').on('click',function() {
+      console.log('onetone button - 1');
+      $('#onetoone').hide();
+      $('#aslist').show();
+      // To show only individual rows:
+      $('.Row').hide();
+      $('.onetoone').show();
+      // then we iterate
+      var i = $('.Row').length;
+      // Then we iterate
+      var nxt = $('#idx').val();
+      if (nxt < i & nxt >0) {
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(1)
+      }
+      console.log('onetone button - 2');
+      });
+
+      $('#aslist').on('click',function() {
+      console.log('aslist button - 1');
+      $('#onetoone').show();
+      $('#aslist').hide();
+      $('.onetoone').hide();
+      $('.Row').show();
+      console.log('aslist button - 2');
+      });
+
+      $('#less').on('click',function(){
+      console.log('less button - 1');
+      var i = $('.Row').length;
+      var nxt = parseInt($('#idx').val(),10) - 1;
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(1)
+      }
+      console.log('less button - 2');
+      });
+
+      $('#more').on('click',function(){
+      console.log('more button - 1');
+      var i = $('.Row').length;
+      var nxt = parseInt($('#idx').val(),10) + 1;
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(i)
+      }
+      console.log('more button - 2');
+      });
+
+      $('#idx').on('change', function(){
+      console.log('idx changed - 1');
+      var i = $('.Row').length;
+      var nxt = $('#idx').val();
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(i)
+      }
+      console.log('idx changed - 2');
+      });
+      });
+
+      </script>
+
+      <style type='text/css'>
+      .Table
+      {
+      display: table;
+      }
+      .Title
+      {
+      display: table-caption;
+      text-align: center;
+      font-weight: bold;
+      font-size: larger;
+      background-color:#4C6F50;
+      color: #fff;
+      }
+      .Row
+      {
+      display: table-row;
+      }
+      .Row:nth-child(even) {
+        background-color: #56882433;
+      }
+      .Cell
+      {
+      display: table-cell;
+      border: solid;
+      border-width: thin;
+      padding-left: 5px;
+      padding-right: 5px;
+      vertical-align: top;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      }
+      </style>
+
+      </head>
+
+      <body>
+      <div id='pageone' data-role='main' class='ui-content'>
+      
+<p><p><h1> Data Visualization & Exploration </h1>
+                <form>
+                <input type='button' id='onetoone' value='Show as Cards'>
+                <input type='button' id='aslist' class='onetoone' value='Show as List'>
+                </form>
+                <p>
+                
+<p><p>
+                <div class='Table'>
+                <div class='Row'>
+                <div class='Cell Title'> Variable </div>
+                <div class='Cell Title'> Distribution </div>
+                <div class='Cell Title'> Descriptive <br> Statistics</div>
+                <div class='Cell Title'> Outliers </div> <div class='Cell Title'> Dependent <br> Variable <br> Distribution </div> </div>
+<div class='Row'><div class='Cell'><b> id </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/id_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  1607 	 <u>StdDev</u>:  878.2 <br><u>Median</u>:  1702 	 <u>IQR</u>:  831.5 - 2355 <br><u>Min</u>:  15 	 <u>Max</u>:  2994 </div>
+<div class='Cell'><img class='origimg' src='fig/id_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/id_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> budget </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/budget_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  4.145e+07 	 <u>StdDev</u>:  5.801e+07 <br><u>Median</u>:  2e+07 	 <u>IQR</u>:  2.225e+06 - 6.075e+07 <br><u>Min</u>:  0 	 <u>Max</u>:  380000000 </div>
+<div class='Cell'><img class='origimg' src='fig/budget_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> 1.5e+08, 1.8e+08, 2.2e+08, 1.85e+08, 1.52e+08, 1.7e+08, 3.8e+08, 2.25e+08</div>
+<div class='Cell'><img class='origimg' src='fig/budget_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> homepage </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/homepage_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> 0 </u>:  82 </li> <li><u> 1 </u>:  52 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/homepage_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> original_language </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/original_language_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  36 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/original_language_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> popularity </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/popularity_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  12.92 	 <u>StdDev</u>:  22.32 <br><u>Median</u>:  8.985 	 <u>IQR</u>:  4.27 - 12.5 <br><u>Min</u>:  0.002229 	 <u>Max</u>:  154.8 </div>
+<div class='Cell'><img class='origimg' src='fig/popularity_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> 28.51, 89.89, 154.8, 123.2, 146.2, 47.33, 27.89, 63.87</div>
+<div class='Cell'><img class='origimg' src='fig/popularity_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> popularity_cat </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/popularity_cat_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> High </u>:  22 </li> <li><u> Low </u>:  27 </li> <li><u> Medium </u>:  18 </li> <li><u> Superb </u>:  67 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/popularity_cat_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> release_date </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/release_date_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2398 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/release_date_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> year </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/year_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  2000 	 <u>StdDev</u>:  17.12 <br><u>Median</u>:  2005 	 <u>IQR</u>:  1994 - 2011 <br><u>Min</u>:  1950 	 <u>Max</u>:  2048 </div>
+<div class='Cell'><img class='origimg' src='fig/year_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> 1952, 1960, 1968, 1964, 1967, 1950, 1959, 2048, 2039, 1963</div>
+<div class='Cell'><img class='origimg' src='fig/year_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> month </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/month_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  7.933 	 <u>StdDev</u>:  3.236 <br><u>Median</u>:  9 	 <u>IQR</u>:  6 - 11 <br><u>Min</u>:  1 	 <u>Max</u>:  12 </div>
+<div class='Cell'><img class='origimg' src='fig/month_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/month_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> runtime </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/runtime_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  132 / 134  ( 98.51 %) <br> <u>Missing</u>:  2  ( 1.493 %)<p> <u>Mean</u>:  136.8 	 <u>StdDev</u>:  8.799 <br><u>Median</u>:  138 	 <u>IQR</u>:  133 - 140 <br><u>Min</u>:  60 	 <u>Max</u>:  152 </div>
+<div class='Cell'><img class='origimg' src='fig/runtime_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> 152, 60</div>
+<div class='Cell'><img class='origimg' src='fig/runtime_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> revenue </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/revenue_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  1.412e+08 	 <u>StdDev</u>:  2.391e+08 <br><u>Median</u>:  3.427e+07 	 <u>IQR</u>:  6.781e+06 - 1.619e+08 <br><u>Min</u>:  3 	 <u>Max</u>:  1519557910 </div>
+<div class='Cell'><img class='origimg' src='fig/revenue_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  12  outlier values</div>
+<div class='Cell'><img class='origimg' src='fig/revenue_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> best_seller </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/best_seller_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> No </u>:  16 </li> <li><u> Yes </u>:  118 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/best_seller_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> lead_actor </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/lead_actor_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  134 / 134  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  1542 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/lead_actor_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> cnt_actor_performance </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/cnt_actor_performance_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  127 / 134  ( 94.78 %) <br> <u>Missing</u>:  7  ( 5.224 %)<p> <u>Mean</u>:  10.02 	 <u>StdDev</u>:  9.555 <br><u>Median</u>:  7 	 <u>IQR</u>:  2 - 15 <br><u>Min</u>:  1 	 <u>Max</u>:  34 </div>
+<div class='Cell'><img class='origimg' src='fig/cnt_actor_performance_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/cnt_actor_performance_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> female_actor_count </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/female_actor_count_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  133 / 134  ( 99.25 %) <br> <u>Missing</u>:  1  ( 0.7463 %)<p> <u>Mean</u>:  4.241 	 <u>StdDev</u>:  3.67 <br><u>Median</u>:  3 	 <u>IQR</u>:  2 - 5 <br><u>Min</u>:  0 	 <u>Max</u>:  20 </div>
+<div class='Cell'><img class='origimg' src='fig/female_actor_count_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> 12, 10, 14, 20, 16, 11, 18, 13</div>
+<div class='Cell'><img class='origimg' src='fig/female_actor_count_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> male_actor_count </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/male_actor_count_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  133 / 134  ( 99.25 %) <br> <u>Missing</u>:  1  ( 0.7463 %)<p> <u>Mean</u>:  10.6 	 <u>StdDev</u>:  7.849 <br><u>Median</u>:  8 	 <u>IQR</u>:  6 - 11 <br><u>Min</u>:  1 	 <u>Max</u>:  48 </div>
+<div class='Cell'><img class='origimg' src='fig/male_actor_count_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  12  outlier values</div>
+<div class='Cell'><img class='origimg' src='fig/male_actor_count_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> unkown_gender_actor_count </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/unkown_gender_actor_count_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  133 / 134  ( 99.25 %) <br> <u>Missing</u>:  1  ( 0.7463 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> 0 </u>:  120 </li> <li><u> 1 </u>:  11 </li> <li><u> 9 </u>:  1 </li> <li><u> 10 </u>:  1 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/unkown_gender_actor_count_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> country_cnt </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/country_cnt_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  131 / 134  ( 97.76 %) <br> <u>Missing</u>:  3  ( 2.239 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> 1 </u>:  90 </li> <li><u> 2 </u>:  36 </li> <li><u> 3 </u>:  5 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/country_cnt_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> cnt_crew </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/cnt_crew_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  133 / 134  ( 99.25 %) <br> <u>Missing</u>:  1  ( 0.7463 %)<p> <u>Mean</u>:  29.97 	 <u>StdDev</u>:  35.22 <br><u>Median</u>:  15 	 <u>IQR</u>:  8 - 34 <br><u>Min</u>:  1 	 <u>Max</u>:  160 </div>
+<div class='Cell'><img class='origimg' src='fig/cnt_crew_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  16  outlier values</div>
+<div class='Cell'><img class='origimg' src='fig/cnt_crew_3.png' height='150' width='150'><br></div>
+</div>
+</div>
+</div>
+                <div data-role='popup' id='myContainer' style='display: none;'>
+                <img id='popup_img' src='' />
+                </div>
+                </div>
+                </div>
+                </div>
+                <p>
+                <div class='onetoone'>
+                <form id='myform2'>
+                <span> <input type='button' id='less' value=' << '> </span>
+                <span> <input id='idx' name='idx' value='1'></input></span>
+                <span> <input type='button' id='more' value=' >> '> </span>
+                </form>
+                </div>
+                <p>
+                </body></html>
+                
